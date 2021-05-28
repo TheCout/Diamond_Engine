@@ -1,3 +1,5 @@
+#ifndef _capp_
+#define _capp_
 #pragma once
 #include "wx/evtloop.h"
 #include "cMain.h"
@@ -13,7 +15,7 @@
 
 
 class cApp : public wxApp {
-	BasicGLPane* glPane;
+	GLPane* glPane;
 public:
 	bool render_loop_on;
 	cApp() {};
@@ -28,4 +30,4 @@ public:
 	virtual bool OnInit();
 	wxFrame* frame;
 };
-
+#endif

@@ -1,3 +1,5 @@
+#ifndef _primitives_
+#define _primitives_
 #pragma once
 #include "wx/wx.h"
 #include "wx/glcanvas.h"
@@ -36,3 +38,4 @@ void Arrow(GLuint ID, float radius, color color);
 
 //Special / Not defined
 void DrawTerrain(GLuint ID);
+#endif

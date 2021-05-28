@@ -1,3 +1,5 @@
+#ifndef _sound_
+#define _sound_
 #pragma once
 #include <Windows.h>
 #include <stdio.h>
@@ -16,3 +18,4 @@ public:
 
 	void SetLocalVolume(DWORD dwVolume);
 };
+#endif

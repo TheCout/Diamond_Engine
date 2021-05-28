@@ -1,21 +1,33 @@
+#ifndef _cmain_
+#define _cmain_
 #pragma once
+//Images
 #include "Images/Icons/addBlock.xpm"
+//WxWidgets
+#include "wx/wx.h"
+#include "wx/glcanvas.h"
 #include "wx/splitter.h"
 #include "wx/artprov.h"
+//Render
 #include "Render.h"
+//Cg Types
 #include "cg.h"
+//ID's
+#include "IDs.h"
 
 
 #define DEFAULT_WINDOW_WIDTH 870
 #define DEFAULT_WINDOW_HEIGHT 635
 
-#define ADD_BLOCK_ID 0002
+
+class cMain;
+class cLogFrame;
 
 
 class cMain : public wxFrame
 {
 	RenderTimer* timer;
-	BasicGLPane* wxgl;
+	GLPane* wxgl;
 
 public:
 	cMain();
@@ -75,3 +87,4 @@ public:
 		wxLog::SetActiveTarget(new wxLogTextCtrl(logText));
 	}
 };
+#endif

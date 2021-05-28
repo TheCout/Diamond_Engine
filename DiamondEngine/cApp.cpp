@@ -1,22 +1,26 @@
 #include "cApp.h"
 #include <stdlib.h>
-BEGIN_EVENT_TABLE(BasicGLPane, wxGLCanvas)
-EVT_MOTION(BasicGLPane::mouseMoved)
-EVT_LEFT_DOWN(BasicGLPane::mouseDown)
-EVT_LEFT_UP(BasicGLPane::mouseReleased)
-EVT_RIGHT_DOWN(BasicGLPane::rightClick)
-EVT_RIGHT_UP(BasicGLPane::rightReleased)
-EVT_LEAVE_WINDOW(BasicGLPane::mouseLeftWindow)
-EVT_SIZE(BasicGLPane::resized)
-EVT_KEY_DOWN(BasicGLPane::keyPressed)
-EVT_KEY_UP(BasicGLPane::keyReleased)
-EVT_MOUSEWHEEL(BasicGLPane::mouseWheelMoved)
-EVT_PAINT(BasicGLPane::onPaint)
+using glm::vec4;
+using glm::vec2;
+using glm::vec3;
+
+BEGIN_EVENT_TABLE(GLPane, wxGLCanvas)
+EVT_MOTION(GLPane::mouseMoved)
+EVT_LEFT_DOWN(GLPane::mouseDown)
+EVT_LEFT_UP(GLPane::mouseReleased)
+EVT_RIGHT_DOWN(GLPane::rightClick)
+EVT_RIGHT_UP(GLPane::rightReleased)
+EVT_LEAVE_WINDOW(GLPane::mouseLeftWindow)
+EVT_SIZE(GLPane::resized)
+EVT_KEY_DOWN(GLPane::keyPressed)
+EVT_KEY_UP(GLPane::keyReleased)
+EVT_MOUSEWHEEL(GLPane::mouseWheelMoved)
+EVT_PAINT(GLPane::onPaint)
 END_EVENT_TABLE()
-void BasicGLPane::keyReleased(wxKeyEvent& event) {}
-void BasicGLPane::mouseWheelMoved(wxMouseEvent& event) {}
-void BasicGLPane::mouseLeftWindow(wxMouseEvent& event) {}
-void BasicGLPane::mouseReleased(wxMouseEvent& event) {}
+void GLPane::keyReleased(wxKeyEvent& event) {}
+void GLPane::mouseWheelMoved(wxMouseEvent& event) {}
+void GLPane::mouseLeftWindow(wxMouseEvent& event) {}
+void GLPane::mouseReleased(wxMouseEvent& event) {}
 
 wxIMPLEMENT_APP(cApp);
 wxBEGIN_EVENT_TABLE(cMain, wxFrame)
@@ -26,7 +30,7 @@ wxEND_EVENT_TABLE()
 
 
 //Window
-glm::vec2 winSize;
+vec2 winSize;
 
 
 //Textures
@@ -50,7 +54,7 @@ bool cameraShouldMove = false;
 
 //Mouse
 Mouse mouse(camera);
-glm::vec2 lastMousePos;
+vec2 lastMousePos;
 bool  firstTimeMouse = true;
 
 
@@ -81,14 +85,14 @@ void cApp::AddBlock(wxCommandEvent& event) {
     Texture* woodBox_tex = &Tex[WOODBOX];
     Texture* sus_tex = &Tex[SUS];
 
-    loader->LoadCube(CUBE_DEFAULT_SIZE * 1, glm::vec3(0.0, 0.0 + nextBlockPos, 0.0), woodBox_tex);
+    loader->LoadCube(CUBE_DEFAULT_SIZE * 1, vec3(0.0, 0.0 + nextBlockPos, 0.0), woodBox_tex);
     nextBlockPos+= CUBE_DEFAULT_SIZE;
 }
 
 
 
 
-BasicGLPane::BasicGLPane(wxPanel* parent, int* args) : wxGLCanvas(parent, BASICGLPANE_ID, args, wxDefaultPosition, wxDefaultSize, wxFULL_REPAINT_ON_RESIZE | wxWS_EX_PROCESS_IDLE) {
+GLPane::GLPane(wxPanel* parent, int* args) : wxGLCanvas(parent, BASICGLPANE_ID, args, wxDefaultPosition, wxDefaultSize, wxFULL_REPAINT_ON_RESIZE | wxWS_EX_PROCESS_IDLE) {
     m_context = new wxGLContext(this);
     SetBackgroundStyle(wxBG_STYLE_CUSTOM);
     if (!IsShown()) return;
@@ -102,12 +106,12 @@ BasicGLPane::BasicGLPane(wxPanel* parent, int* args) : wxGLCanvas(parent, BASICG
 
     //Load objects
     loader->GenerateRandom();
-    loader->LoadObj("stall.obj", glm::vec3(10.0, 0.0, 0.0));
+    loader->LoadObj("stall.obj", vec3(10.0, 0.0, 0.0));
 }
 
 
 
-void BasicGLPane::prepare2DViewport(int topleft_x, int topleft_y, int bottomrigth_x, int bottomrigth_y) {
+void GLPane::prepare2DViewport(int topleft_x, int topleft_y, int bottomrigth_x, int bottomrigth_y) {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Black Background
     glEnable(GL_TEXTURE_2D);   // Textures
     glEnable(GL_COLOR_MATERIAL);
@@ -126,7 +130,7 @@ void BasicGLPane::prepare2DViewport(int topleft_x, int topleft_y, int bottomrigt
 
 
 
-void BasicGLPane::prepare3DViewport(int topleft_x, int topleft_y, int bottomrigth_x, int bottomrigth_y) {
+void GLPane::prepare3DViewport(int topleft_x, int topleft_y, int bottomrigth_x, int bottomrigth_y) {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Black Background
     glClearDepth(1.0f);	// Depth Buffer Setup
     glEnable(GL_LIGHTING);
@@ -150,7 +154,7 @@ void BasicGLPane::prepare3DViewport(int topleft_x, int topleft_y, int bottomrigt
 
 
 
-void BasicGLPane::keyPressed(wxKeyEvent& event) {
+void GLPane::keyPressed(wxKeyEvent& event) {
     wxChar uk = event.GetUnicodeKey();
     if (uk != WXK_NONE) {
         switch (uk) {
@@ -178,7 +182,7 @@ void BasicGLPane::keyPressed(wxKeyEvent& event) {
 
 
 
-void BasicGLPane::mouseMoved(wxMouseEvent& event) {
+void GLPane::mouseMoved(wxMouseEvent& event) {
     static float acceleration = 0;
     static float limit = 1;
     int x = event.GetX(), y = event.GetY();
@@ -197,7 +201,7 @@ void BasicGLPane::mouseMoved(wxMouseEvent& event) {
     lastMousePos.y = y;
 
     //Every time mouse moves i update Mouse.m_pos value with Mouse->setPos() method
-    mouse.setPos(glm::vec2(x, y));
+    mouse.setPos(vec2(x, y));
 
     if (cameraShouldMove) {
         if (acceleration < limit) {
@@ -210,9 +214,9 @@ void BasicGLPane::mouseMoved(wxMouseEvent& event) {
         acceleration = 0;
     }
 }
-void BasicGLPane::mouseDown(wxMouseEvent& event) {
-    glm::vec3 ep = mouse.toEyeSpace();
-    glm::vec3 wp = mouse.toWorldSpace(ep);
+void GLPane::mouseDown(wxMouseEvent& event) {
+    vec3 ep = mouse.toEyeSpace();
+    vec3 wp = mouse.toWorldSpace(ep);
 
     Texture* sus_tex = &Tex[SUS];
     loader->LoadCube(0.2, wp, sus_tex);
@@ -223,16 +227,16 @@ void BasicGLPane::mouseDown(wxMouseEvent& event) {
     snprintf(buffer, sizeof buffer, "mouseX: %.4f mouseY: %.4f pos: (%.4f, %.4f, %.4f)", mouse.pos.x, mouse.pos.y, wp.x, wp.y, wp.z);
     wxLogMessage(buffer);
 }
-void BasicGLPane::rightClick(wxMouseEvent& event) {
+void GLPane::rightClick(wxMouseEvent& event) {
     cameraShouldMove = true;
 }
-void BasicGLPane::rightReleased(wxMouseEvent& event) {
+void GLPane::rightReleased(wxMouseEvent& event) {
     cameraShouldMove = false;
 }
 
 
 
-void BasicGLPane::render() {
+void GLPane::render() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
     glPushMatrix();
 
@@ -285,7 +289,7 @@ void BasicGLPane::render() {
 
 
 
-void BasicGLPane::onPaint(wxPaintEvent& evt) {
+void GLPane::onPaint(wxPaintEvent& evt) {
     wxPaintDC dc(this);
     render();
 }

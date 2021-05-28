@@ -1,7 +1,7 @@
 #include "Render.h"
 
 
-RenderTimer::RenderTimer(BasicGLPane* pane) : wxTimer() {
+RenderTimer::RenderTimer(GLPane* pane) : wxTimer() {
     RenderTimer::pane = pane;
 }
 

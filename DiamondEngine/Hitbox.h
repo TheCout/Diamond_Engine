@@ -1,6 +1,8 @@
+#ifndef _hitbox_
+#define _hitbox_
 #pragma once
 #include "cg.h"
-#include "opengl.h"
+#include "GLpane.h"
 #include "Object.h"
 
 
@@ -29,3 +31,4 @@ public:
 
 	~Hitbox();
 };
+#endif

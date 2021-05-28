@@ -1,3 +1,5 @@
+#ifndef _camera_
+#define _camera_
 #pragma once
 #include "wx/wx.h"
 #include "wx/glcanvas.h"
@@ -56,3 +58,4 @@ public:
 	void updateYaw(float dYaw, float dYawy);
 	void update();
 };
+#endif

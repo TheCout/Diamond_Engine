@@ -1,6 +1,8 @@
+#ifndef _texture_
+#define _texture_
 #pragma once
 #include "stb_image.h"
-#include "opengl.h"
+#include "GLpane.h"
 
 
 class Texture {
@@ -14,3 +16,4 @@ public:
 	void Bind();
 	void UnBind();
 };
+#endif

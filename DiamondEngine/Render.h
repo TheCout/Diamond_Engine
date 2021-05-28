@@ -1,12 +1,15 @@
+#ifndef _render_
+#define _render_
 #pragma once
 #include "wx/sizer.h"
 #include "wx/timer.h"
-#include "opengl.h"
+#include "GLpane.h"
 
 class RenderTimer : public wxTimer {
-    BasicGLPane* pane;
+    GLPane* pane;
 public:
-    RenderTimer(BasicGLPane* pane);
+    RenderTimer(GLPane* pane);
     void Notify();
     void start();
 };
+#endif

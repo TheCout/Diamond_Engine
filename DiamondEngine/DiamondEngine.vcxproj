@@ -25,12 +25,13 @@
     <ClInclude Include="cMain.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Hitbox.h" />
+    <ClInclude Include="IDs.h" />
     <ClInclude Include="Loader.h" />
     <ClInclude Include="math.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjLoader.h" />
-    <ClInclude Include="opengl.h" />
+    <ClInclude Include="GLPane.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="primitives.h" />
     <ClInclude Include="Render.h" />
@@ -48,14 +49,12 @@
     <ClCompile Include="Loader.cpp" />
     <ClCompile Include="math.cpp" />
     <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="Physics.cpp" />
     <ClCompile Include="primitives.cpp" />
     <ClCompile Include="Render.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="Texture.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="..\..\..\..\Downloads\IndiHome.wav" />

@@ -18,7 +18,7 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "DiamondEngine", wxPoint(30, 30), wx
 	left = new wxPanel(splitter);
 	right = new wxPanel(right_splitter);
 	bottom = new wxPanel(right_splitter);
-	wxgl = new BasicGLPane(right, args);
+	wxgl = new GLPane(right, args);
 
 
 	//Menu Bar
@@ -47,7 +47,7 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "DiamondEngine", wxPoint(30, 30), wx
 
 	//List
 	wxString choices[] = {"     Part","Part", "Part"};
-	hierarchy = new wxListBox(left, 0002, wxDefaultPosition, GetClientSize(), sizeof(choices)/sizeof(*choices), choices, wxLB_SINGLE | wxLB_HSCROLL, wxDefaultValidator);
+	hierarchy = new wxListBox(left, HIERARCHY_ID, wxDefaultPosition, GetClientSize(), sizeof(choices)/sizeof(*choices), choices, wxLB_SINGLE | wxLB_HSCROLL, wxDefaultValidator);
 	hierarchy->SetBackgroundColour(wxColor(45, 45, 45));
 	hierarchy->SetForegroundColour(wxColor(255, 255, 255));
 	vsizer->Add(hierarchy, 1, wxEXPAND);

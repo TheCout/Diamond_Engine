@@ -1,7 +1,9 @@
+#ifndef _mouse_
+#define _mouse_
 #pragma once
 #include "glm/glm/glm.hpp"
 #include "Camera.h"
-#include "opengl.h"
+#include "GLpane.h"
 #include "cg.h"
 #include <algorithm>
 #include <math.h>
@@ -27,3 +29,4 @@ public:
     glm::vec3 toEyeSpace();
     glm::vec3 toWorldSpace(glm::vec3 eye_space_pos);
 };
+#endif

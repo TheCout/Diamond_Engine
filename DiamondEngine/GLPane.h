@@ -1,19 +1,22 @@
 #ifndef _glpane_
 #define _glpane_
+#pragma once
 
+//WxWidgets
 #include "wx/wx.h"
 #include "wx/glcanvas.h"
+//ID's
+#include "IDs.h"
 
-#define BASICGLPANE_ID 0003
 
-class BasicGLPane : public wxGLCanvas {
+class GLPane : public wxGLCanvas {
 	wxGLContext* m_context;
 public:
 	wxPanel* panel;
 
 	//Constructor and destructor
-	BasicGLPane(wxPanel* parent, int* args);
-	virtual ~BasicGLPane() { delete m_context; }
+	GLPane(wxPanel* parent, int* args);
+	virtual ~GLPane() { delete m_context; }
 
 	//Getters
 	int getWidth() { return GetSize().x; }
@@ -38,4 +41,5 @@ public:
 	void keyReleased(wxKeyEvent& event);
 	DECLARE_EVENT_TABLE()
 };
+
 #endif

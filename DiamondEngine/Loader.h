@@ -1,3 +1,5 @@
+#ifndef _loader_
+#define _loader_
 #pragma once
 #include "glm/glm/glm.hpp"
 #include "Texture.h"
@@ -40,3 +42,4 @@ public:
 
 	void DrawEverything();
 };
+#endif

@@ -1,5 +1,3 @@
-#ifndef _math_
-#define _math_
 #pragma once
 #include <cmath>
 #include <math.h>
@@ -11,4 +9,3 @@
 float random(float a, float b);
 int fibonacci(unsigned int index);
 float cvtToRad(float ang);
-#endif

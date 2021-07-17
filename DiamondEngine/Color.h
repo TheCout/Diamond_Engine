@@ -1,5 +1,3 @@
-#ifndef _color_
-#define _color_
 #pragma once
 typedef float color[4];
 
@@ -17,4 +15,3 @@ extern color white_gray; // = { 0.7, 0.7, 0.7, 1 };
 extern color shadow_gray; // = { 0.3, 0.3, 0.3, 1 };
 extern color purple; // = { 0.54, 0.17, 0.88, 1 };
 extern color orange; // = { 0.95, 0.65, 0.25, 1 };
-#endif

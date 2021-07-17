@@ -1,7 +1,5 @@
-#ifndef _cg_
-#define _cg_
 #pragma once
-#include "glm/glm/glm.hpp"
+#include "glm/glm.hpp"
 #include <cmath>
 #include <iomanip>
 #include <algorithm>
@@ -38,4 +36,3 @@ struct ray {
     ray() : v1(0.0, 0.0, 0.0), v2(0.0, 0.0, 0.0) {}
     ray(glm::vec3 v1_, glm::vec3 v2_) : v1(v1_), v2(v2_) {}
 };
-#endif

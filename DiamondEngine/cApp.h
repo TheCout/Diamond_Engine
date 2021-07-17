@@ -1,5 +1,3 @@
-#ifndef _capp_
-#define _capp_
 #pragma once
 #include "wx/evtloop.h"
 #include "cMain.h"
@@ -30,4 +28,3 @@ public:
 	virtual bool OnInit();
 	wxFrame* frame;
 };
-#endif

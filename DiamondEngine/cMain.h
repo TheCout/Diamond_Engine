@@ -1,30 +1,24 @@
-#ifndef _cmain_
-#define _cmain_
 #pragma once
-//Images
 #include "Images/Icons/addBlock.xpm"
-//WxWidgets
 #include "wx/wx.h"
 #include "wx/glcanvas.h"
 #include "wx/splitter.h"
 #include "wx/artprov.h"
-//Render
 #include "Render.h"
-//Cg Types
 #include "cg.h"
-//ID's
 #include "IDs.h"
 
 
-#define DEFAULT_WINDOW_WIDTH 870
-#define DEFAULT_WINDOW_HEIGHT 635
+class Configurations
+{
+protected:
+	static const int WINDOW_WIDTH = 870;
+	static const int WINDOW_HEIGHT = 635;
+};
 
 
-class cMain;
-class cLogFrame;
 
-
-class cMain : public wxFrame
+class cMain : public wxFrame, public Configurations
 {
 	RenderTimer* timer;
 	GLPane* wxgl;
@@ -70,7 +64,8 @@ public:
 class cLogFrame : public wxFrame
 {
 public:
-	cLogFrame() : wxFrame(NULL, wxID_ANY, _("Console")) {
+	cLogFrame() : wxFrame(NULL, wxID_ANY, _("Console")) 
+	{
 		wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 
 		wxTextCtrl* logText = new wxTextCtrl(this, wxID_ANY, wxEmptyString,
@@ -87,4 +82,3 @@ public:
 		wxLog::SetActiveTarget(new wxLogTextCtrl(logText));
 	}
 };
-#endif

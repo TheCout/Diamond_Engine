@@ -1,5 +1,3 @@
-#ifndef _hitbox_
-#define _hitbox_
 #pragma once
 #include "cg.h"
 #include "GLpane.h"
@@ -31,4 +29,3 @@ public:
 
 	~Hitbox();
 };
-#endif

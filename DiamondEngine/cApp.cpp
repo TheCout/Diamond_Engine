@@ -67,7 +67,6 @@ bool cApp::OnInit() {
 
     //Console
     (new cLogFrame())->Show();
-    
     //char buffer[64];
     //snprintf(buffer, sizeof buffer, "%f", m_frame1->);
     //wxLogMessage(buffer);
@@ -92,7 +91,7 @@ void cApp::AddBlock(wxCommandEvent& event) {
 
 
 
-GLPane::GLPane(wxPanel* parent, int* args) : wxGLCanvas(parent, BASICGLPANE_ID, args, wxDefaultPosition, wxDefaultSize, wxFULL_REPAINT_ON_RESIZE | wxWS_EX_PROCESS_IDLE) {
+GLPane::GLPane(wxPanel* parent, int* args) : wxGLCanvas(parent, BASICGLPANE_ID, args, wxDefaultPosition, wxDefaultSize, wxWS_EX_PROCESS_IDLE) {
     m_context = new wxGLContext(this);
     SetBackgroundStyle(wxBG_STYLE_CUSTOM);
     if (!IsShown()) return;
@@ -218,13 +217,10 @@ void GLPane::mouseDown(wxMouseEvent& event) {
     vec3 ep = mouse.toEyeSpace();
     vec3 wp = mouse.toWorldSpace(ep);
 
-    Texture* sus_tex = &Tex[SUS];
-    loader->LoadCube(0.2, wp, sus_tex);
-    //loader->LoadHitbox(debugHitbox, loader->getObject(loader->ObjectsTotal() - 2), loader->getLastObject());
-    //loader->LoadLine(camera.m_pos, realPos);
+    loader->LoadCube(0.2, wp, &Tex[SUS]);
 
     char buffer[64];
-    snprintf(buffer, sizeof buffer, "mouseX: %.4f mouseY: %.4f pos: (%.4f, %.4f, %.4f)", mouse.pos.x, mouse.pos.y, wp.x, wp.y, wp.z);
+    snprintf(buffer, sizeof buffer, "mouseX: %.3f mouseY: %.3f \npos: (%.3f, %.3f, %.3f)\n", mouse.pos.x, mouse.pos.y, wp.x, wp.y, wp.z);
     wxLogMessage(buffer);
 }
 void GLPane::rightClick(wxMouseEvent& event) {

@@ -1,11 +1,6 @@
-#ifndef _glpane_
-#define _glpane_
 #pragma once
-
-//WxWidgets
 #include "wx/wx.h"
 #include "wx/glcanvas.h"
-//ID's
 #include "IDs.h"
 
 
@@ -41,5 +36,3 @@ public:
 	void keyReleased(wxKeyEvent& event);
 	DECLARE_EVENT_TABLE()
 };
-
-#endif

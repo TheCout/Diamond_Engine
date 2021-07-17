@@ -1,7 +1,7 @@
 #include "cMain.h"
 
 
-cMain::cMain() : wxFrame(nullptr, wxID_ANY, "DiamondEngine", wxPoint(30, 30), wxSize(DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT)) {
+cMain::cMain() : wxFrame(nullptr, wxID_ANY, "DiamondEngine", wxPoint(30, 30), wxSize(Configurations::WINDOW_WIDTH, Configurations::WINDOW_HEIGHT)) {
 
 	int args[] = { WX_GL_RGBA, WX_GL_DOUBLEBUFFER, WX_GL_DEPTH_SIZE , 16, 0 };
 	wxBoxSizer* hsizer = new wxBoxSizer(wxHORIZONTAL);
@@ -9,6 +9,7 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "DiamondEngine", wxPoint(30, 30), wx
 
 	//Bitmaps
 	wxBitmap addBlockBmp(addBlock_xpm);
+
 
 	//Classes Definitions
 	menubar = new wxMenuBar;
@@ -94,4 +95,5 @@ void cMain::AddBlock(wxCommandEvent& event) {
 void cMain::onQuit(wxCommandEvent& WXUNUSED(event)) {
 	timer->Stop();
 	Close(true);
+	abort();
 }
